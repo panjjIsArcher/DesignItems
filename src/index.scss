@@ -6,29 +6,25 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  font-synthesis: none; // 不合成粗体字体
+  text-rendering: optimizeLegibility; // 着重文本的清晰度 放弃一部分文本的渲染速度 和 几何精度
+  -webkit-font-smoothing: antialiased; // 字体抗锯齿 在像素（而不是亚像素）级别平滑字体。对于深色背景上的浅色文本，从亚像素渲染切换为抗锯齿渲染可以使其看起来更清晰。
   -moz-osx-font-smoothing: grayscale;
 }
 
 a {
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  &:hover {
+    color: #535bf2;
+  }
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
 }
 
 h1 {
-  font-size: 3.2em;
   line-height: 1.1;
 }
 
@@ -42,19 +38,19 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  &:hover {
+    border-color: #646cff;
+  }
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #fff;
   }
   a:hover {
     color: #747bff;
