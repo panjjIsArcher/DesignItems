@@ -1,8 +1,20 @@
 import IndexStyle from "../../assets/index.module.scss";
-function Index(){
-	return <div className={IndexStyle.nav}>
-		导航
-	</div>
+import { Link, Routes, Route } from "react-router-dom";
+import { Fragment } from "react";
+import Home from "../home/home";
+function Index() {
+  return (
+    <Fragment>
+      <ul className={IndexStyle.nav}>
+        <li>
+          <Link to="/">Button</Link>
+        </li>
+      </ul>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Fragment>
+  );
 }
 
-export default Index
+export default Index;

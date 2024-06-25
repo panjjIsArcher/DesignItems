@@ -1,0 +1,16 @@
+@import "./vari.scss";
+.container{
+  width: 100%;
+  height: calc(100% - 44px);
+  background-color: inherit;
+  .card-list {
+  
+    li{
+      background-color: #efefef;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+  
+}
