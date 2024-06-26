@@ -2,6 +2,7 @@ import IndexStyle from "../../assets/index.module.scss";
 import { Link, Routes, Route } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 import Home from "../home/home";
+import Card from "../tools/Card";
 import { FaRegMoon } from "react-icons/fa";
 import { LuSun } from "react-icons/lu";
 import {
@@ -38,6 +39,7 @@ function Index() {
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/card" element={<Card />} />
       </Routes>
     </Fragment>
   );
