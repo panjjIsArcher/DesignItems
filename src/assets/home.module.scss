@@ -1,4 +1,5 @@
 @import "./vari.scss";
+
 .container {
   width: 100%;
   height: calc(100% - 44px);
@@ -14,12 +15,16 @@
     box-sizing: border-box;
 
     li {
-      background-color: #efefef;
+      background-color: rgba(#fbf7f7, 0.25);
       height: fit-content;
       width: fit-content;
       border-radius: 20px;
       transition-property: transform; // 过渡效果
       transition-duration: 0.5s;
+
+      position: relative;
+      animation-name: fade-in;
+      animation-duration: 0.7s;
 
       &:hover {
         cursor: pointer;
@@ -29,14 +34,25 @@
       .card {
         border-radius: inherit;
         padding: 10px 15px;
-        width: 400px;
-        height: 250px;
+        width: 23.4vw;
+        height: 17.5vw;
         box-shadow: 0px 4px 20px 0px rgba(0, 23, 77, 0.1);
         font-size: 65px;
-        line-height: 250px;
+        line-height: 17.5vw;
         text-align: center;
         text-transform: capitalize; // 首字母大写
       }
     }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    top: -10px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
   }
 }
