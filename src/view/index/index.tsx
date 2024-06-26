@@ -12,12 +12,6 @@ import {
 
 function Index() {
   const [theme, setTheme] = useState(getThemeMap());
-  console.log("theme", theme);
-
-  // // mounted
-  // useEffect(() => {
-
-  // }, []);
 
   const switchTheme = (isLight: boolean) => {
     setTheme(isLight ? THEME.DARK : THEME.LIGHT);
