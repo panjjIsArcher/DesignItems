@@ -1,16 +1,18 @@
 @import "./vari.scss";
-.container{
+.container {
   width: 100%;
   height: calc(100% - 44px);
   background-color: inherit;
   .card-list {
-  
-    li{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 25%);
+    li {
       background-color: #efefef;
-      &:hover{
+
+      &:hover {
         cursor: pointer;
       }
     }
   }
-  
 }
