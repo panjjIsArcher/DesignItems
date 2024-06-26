@@ -2,7 +2,7 @@
 .nav {
   width: calc(100% - 20%);
   height: 44px;
-  background-color: $sub_color;
+  background-color: rgb(26, 26, 26);
   color: $text_color;
   font-size: $font-size;
   display: flex;
@@ -13,4 +13,19 @@
       cursor: pointer;
     }
   }
+}
+
+.icons {
+  position: fixed;
+  right: 4%;
+  font-size: 20px;
+  line-height: 44px;
+  top: 0;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.icon-dark,
+.icon-light {
+  color: var(--main_color);
 }

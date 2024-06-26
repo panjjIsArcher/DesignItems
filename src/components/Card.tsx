@@ -1,5 +1,5 @@
-function Card(){
-    return <div>我</div>
+function Card() {
+  return <div>card</div>;
 }
 
-export default Card
+export default Card;
