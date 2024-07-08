@@ -14,7 +14,8 @@ function Tools() {
           value={name}
         />
       </div>
-      <div className="middle">
+      <div className={CardStyle.middle}>
+        <div className={CardStyle.screen}></div>
         <ul className={CardStyle.list}></ul>
       </div>
     </div>
