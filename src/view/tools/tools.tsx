@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import CardStyle from "../../assets/card.module.scss";
-function Card() {
+function Tools() {
   const [name, setName] = useState("");
-  const changeName = useCallback((val: string, preVal: string) => {
+  const changeName = useCallback((val: string) => {
     setName(val);
   }, []);
   return (
@@ -10,13 +10,15 @@ function Card() {
       <div className={CardStyle.form}>
         <input
           className={CardStyle.input}
-          onChange={(e) => changeName(e.target.value, name)}
+          onChange={(e) => changeName(e.target.value)}
           value={name}
         />
       </div>
-      <ul className={CardStyle.list}></ul>
+      <div className="middle">
+        <ul className={CardStyle.list}></ul>
+      </div>
     </div>
   );
 }
 
-export default Card;
+export default Tools;
