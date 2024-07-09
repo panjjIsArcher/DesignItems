@@ -1,0 +1,32 @@
+.container {
+  position: relative;
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    .input {
+      height: 30%;
+      border-radius: 30px;
+      width: 15vw;
+      text-align: center;
+      line-height: 120px;
+      font-size: 30px;
+      caret-color: var(--main_color);
+      transition: width 0.5s ease-out;
+
+      &:focus,
+      &:focus-visible {
+        width: 30vw;
+      }
+    }
+  }
+  .middle {
+    display: flex;
+    .list,
+    .screen {
+      flex: 1;
+      height: calc(100vh - 164px);
+    }
+  }
+}

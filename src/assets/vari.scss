@@ -1,6 +1,26 @@
-$main_color: rgb(255, 255, 255);
-$sub_color: rgb(26, 26, 26);
-$text_color: rgb(255, 255, 255);
+:root {
+  --main_color: rgb(255, 255, 255);
+  --sub_color: rgb(26, 26, 26);
+  --text_color: rgb(255, 255, 255);
+}
 
-$font-size:14px;
-$sub-font-size:12px;
+// 深色主题
+[data-theme="dark"] {
+  --main_color: rgb(38, 38, 38);
+  --sub_color: rgb(255, 255, 255);
+  --text_color: rgb(255, 255, 255);
+}
+
+// 亮色主题(默认)
+[data-theme="light"] {
+  --main_color: rgb(255, 255, 255);
+  --sub_color: rgb(26, 26, 26);
+  --text_color: rgb(255, 255, 255);
+}
+
+$main_color: var(--main_color);
+$sub_color: var(--sub_color);
+$text_color: var(--text_color);
+
+$font-size: 14px;
+$sub-font-size: 12px;

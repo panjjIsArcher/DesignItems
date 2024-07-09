@@ -4,8 +4,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none; // 不合成粗体字体
   text-rendering: optimizeLegibility; // 着重文本的清晰度 放弃一部分文本的渲染速度 和 几何精度
@@ -18,15 +16,21 @@ a {
   color: $text_color;
 }
 
-ul,li{
+ul,
+li {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
-body {
+body,
+html {
   margin: 0;
   padding: 0;
+  font-size: var(--text_color);
+  color: var(--sub_color);
+  background-color: var(--main_color);
+  font-weight: 500;
 }
 
 h1 {
@@ -40,9 +44,10 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--main_color);
   cursor: pointer;
   transition: border-color 0.25s;
+
   &:hover {
     border-color: #646cff;
   }
@@ -52,15 +57,12 @@ button {
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #fff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+input {
+  border-width: 1px;
+  padding: 0;
+  margin: 0;
+  &:focus,
+  &:focus-visible {
+    outline-width: 0;
   }
 }
