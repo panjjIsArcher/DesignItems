@@ -1,10 +1,19 @@
 import { useCallback, useState } from "react";
 import CardStyle from "../../assets/card.module.scss";
+import G_Card from "./components/GloabalCard";
+import { cards } from "../../mock/database";
+import { CARD_LI } from "../../type/card";
 function Tools() {
   const [name, setName] = useState("");
   const changeName = useCallback((val: string) => {
     setName(val);
   }, []);
+  const [list, setList] = useState<CARD_LI[]>([]);
+  const fetchList = async () => {
+    const data = await cards;
+    setList(data);
+  };
+  fetchList();
   return (
     <div className={CardStyle.container}>
       <div className={CardStyle.form}>
@@ -15,8 +24,14 @@ function Tools() {
         />
       </div>
       <div className={CardStyle.middle}>
-        <ul className={CardStyle.list}></ul>
-        <div className={CardStyle.screen}></div>
+        <ul className={CardStyle.list}>
+          {list.map((c) => (
+            <li key={c.name}>{c.name}</li>
+          ))}
+        </ul>
+        <div className={CardStyle.screen}>
+          <G_Card />
+        </div>
       </div>
     </div>
   );
