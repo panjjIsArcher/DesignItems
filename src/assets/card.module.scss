@@ -1,3 +1,14 @@
+@use "sass:color";
+@import "./vari.scss";
+
+// 亮色主题(默认)
+[data-theme="light"] {
+  --screen_bg_color: #dde0e6;
+}
+// 深色主题
+[data-theme="dark"] {
+  --screen_bg_color: #1b191c;
+}
 .container {
   position: relative;
   .form {
@@ -27,6 +38,12 @@
     .screen {
       flex: 1;
       height: calc(100vh - 164px);
+    }
+    .list {
+      // background-color: ;
+    }
+    .screen {
+      background-color: var(--screen_bg_color);
     }
   }
 }
