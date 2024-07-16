@@ -1,4 +1,4 @@
-import all from "./components/index";
+import all from "../../components/index";
 
 const register = (type: string) => {
   let typeUpperCase = "";
@@ -6,7 +6,8 @@ const register = (type: string) => {
     typeUpperCase += i ? type[i] : type[i].toUpperCase();
   }
   const component = all[typeUpperCase];
-  return component ? component() : null;
+  const comp = component ? component() : null;
+  return comp;
 };
 
 export { register };

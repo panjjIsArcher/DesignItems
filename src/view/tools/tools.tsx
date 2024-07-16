@@ -23,15 +23,26 @@ function Tools() {
     const completeData: CARD_LI[] = data.map((itemConfig) => {
       return { ...itemConfig, component: register(itemConfig.type) };
     });
-    setList(completeData);
+    setList(
+      completeData.filter((card) => {
+        return card.type.indexOf(name) > -1;
+      })
+    );
   };
+
   const changeStyle = (btnItem: CARD_LI) => {
     setCurBtnItem(btnItem);
   };
+
   // mounted阶段
   useEffect(() => {
     fetchList();
   }, []);
+
+  // 监听name的变化
+  useEffect(() => {
+    fetchList();
+  }, [name]);
   return (
     <div className={CardStyle.container}>
       <div className={CardStyle.form}>
@@ -49,7 +60,7 @@ function Tools() {
               className={CardStyle["card-tab"]}
               onClick={() => changeStyle(c)}
             >
-              <div className={` ${c.className}`}>{c.component}</div>
+              {c.type}
             </li>
           ))}
         </ul>
