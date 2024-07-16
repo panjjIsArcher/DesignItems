@@ -5,7 +5,6 @@ function G_Card(props: { curBtnItem: CARD_LI }) {
   return (
     <div
       style={{
-        textAlign: "center",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -19,7 +18,7 @@ function G_Card(props: { curBtnItem: CARD_LI }) {
           height: "8vw",
           lineHeight: "8vw",
         }}
-        className={`${curBtnItem.className}`}
+        className={`${curBtnItem.className} card-common-style`}
       >
         {curBtnItem.text}
       </div>
