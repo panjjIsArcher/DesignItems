@@ -1,14 +1,16 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CardStyle from "../../assets/card.module.scss";
 import G_Card from "./components/GloabalCard";
 import { cards } from "../../mock/database";
 import { CARD_LI } from "../../type/card";
+import { register } from "./register";
 function Tools() {
   const [name, setName] = useState("");
   const [curBtnItem, setCurBtnItem] = useState<CARD_LI>({
-    name: "",
+    type: "",
     className: "",
     text: "BUTTON",
+    component: <div></div>,
   });
   const changeName = useCallback((val: string) => {
     setName(val);
@@ -17,12 +19,19 @@ function Tools() {
   const [list, setList] = useState<CARD_LI[]>([]);
   const fetchList = async () => {
     const data = await cards;
-    setList(data);
+    // 动态去注册组件
+    const completeData: CARD_LI[] = data.map((itemConfig) => {
+      return { ...itemConfig, component: register(itemConfig.type) };
+    });
+    setList(completeData);
   };
   const changeStyle = (btnItem: CARD_LI) => {
     setCurBtnItem(btnItem);
   };
-  fetchList();
+  // mounted阶段
+  useEffect(() => {
+    fetchList();
+  }, []);
   return (
     <div className={CardStyle.container}>
       <div className={CardStyle.form}>
@@ -36,15 +45,11 @@ function Tools() {
         <ul className={CardStyle.list}>
           {list.map((c) => (
             <li
-              key={c.name}
+              key={c.type}
               className={CardStyle["card-tab"]}
               onClick={() => changeStyle(c)}
             >
-              <div
-                className={`${CardStyle.card} card-common-style ${c.className}`}
-              >
-                {c.name}
-              </div>
+              <div className={` ${c.className}`}>{c.component}</div>
             </li>
           ))}
         </ul>

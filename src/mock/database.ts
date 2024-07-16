@@ -1,8 +1,8 @@
-import { CARD_LI } from "../type/card";
+import { BASE_CARD } from "../type/card";
 
-const cards: CARD_LI[] = [
-  { name: "petanca", className: "petanca-btn", text: "petanca" },
-  { name: "flash", className: "flash-btn", text: "flash" },
+const cards: BASE_CARD[] = [
+  { type: "petanca", className: "petanca-btn", text: "petanca" },
+  { type: "flash", className: "flash-btn", text: "flash" },
 ];
 
 export { cards };

@@ -18,9 +18,9 @@ function G_Card(props: { curBtnItem: CARD_LI }) {
           height: "8vw",
           lineHeight: "8vw",
         }}
-        className={`${curBtnItem.className} card-common-style`}
+        className={curBtnItem.className}
       >
-        {curBtnItem.text}
+        {curBtnItem.component}
       </div>
     </div>
   );
