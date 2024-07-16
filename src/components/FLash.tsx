@@ -1,3 +1,11 @@
-export default function Flash() {
-  return <div className="card-common-style">Flash组件</div>;
+interface FLASH {
+  text: string;
+}
+
+export default function Flash(props: FLASH = { text: "BUTTON" }) {
+  return (
+    <div className="card-common-style _flash">
+      <span className="btn-text"> {props.text}</span>
+    </div>
+  );
 }
