@@ -5,13 +5,18 @@ import { cards } from "../../mock/database";
 import { CARD_LI } from "../../type/card";
 function Tools() {
   const [name, setName] = useState("");
+  const [curBtnItem, setCurBtnItem] = useState<CARD_LI>({ name: "" });
   const changeName = useCallback((val: string) => {
     setName(val);
   }, []);
+
   const [list, setList] = useState<CARD_LI[]>([]);
   const fetchList = async () => {
     const data = await cards;
     setList(data);
+  };
+  const changeStyle = (btnItem: CARD_LI) => {
+    setCurBtnItem(btnItem);
   };
   fetchList();
   return (
@@ -26,11 +31,19 @@ function Tools() {
       <div className={CardStyle.middle}>
         <ul className={CardStyle.list}>
           {list.map((c) => (
-            <li key={c.name}>{c.name}</li>
+            <li
+              key={c.name}
+              className={CardStyle["card-tab"]}
+              onClick={() => changeStyle(c)}
+            >
+              <div className={`${CardStyle.card} card-common-style `}>
+                {c.name}
+              </div>
+            </li>
           ))}
         </ul>
         <div className={CardStyle.screen}>
-          <G_Card />
+          <G_Card curBtnItem={curBtnItem} />
         </div>
       </div>
     </div>
