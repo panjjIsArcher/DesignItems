@@ -5,7 +5,11 @@ import { cards } from "../../mock/database";
 import { CARD_LI } from "../../type/card";
 function Tools() {
   const [name, setName] = useState("");
-  const [curBtnItem, setCurBtnItem] = useState<CARD_LI>({ name: "" });
+  const [curBtnItem, setCurBtnItem] = useState<CARD_LI>({
+    name: "",
+    className: "",
+    text: "BUTTON",
+  });
   const changeName = useCallback((val: string) => {
     setName(val);
   }, []);
@@ -36,7 +40,9 @@ function Tools() {
               className={CardStyle["card-tab"]}
               onClick={() => changeStyle(c)}
             >
-              <div className={`${CardStyle.card} card-common-style `}>
+              <div
+                className={`${CardStyle.card} card-common-style ${c.className}`}
+              >
                 {c.name}
               </div>
             </li>
