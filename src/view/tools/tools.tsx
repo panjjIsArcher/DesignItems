@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import CardStyle from "../../assets/card.module.scss";
 import G_Card from "./components/GloabalCard";
-import { cards } from "../../mock/database";
+import { cards } from "../../indexedDB/database";
 import { CARD_LI } from "../../type/card";
 import { register } from "./register";
 function Tools() {
