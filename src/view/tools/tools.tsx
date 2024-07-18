@@ -4,6 +4,7 @@ import G_Card from "./components/GloabalCard";
 import { CARD_LI } from "../../type/card";
 import { register } from "./register";
 import $request from "../../api/request";
+
 function Tools() {
   const [name, setName] = useState("");
   const [curBtnItem, setCurBtnItem] = useState<CARD_LI>({
