@@ -5,10 +5,17 @@ export default class IndexedDB {
       this.db = db;
     });
   }
-  init(dbName: string, version?: number): Promise<IDBDatabase> {
+  // database是否已经存在
+  async isExist(dbName: string): Promise<boolean> {
+    const dbs: IDBDatabaseInfo[] = await window.indexedDB.databases();
+    return dbs.some((db) => db.name === dbName);
+  }
+  // database创建
+  async init(dbName: string, version?: number): Promise<IDBDatabase> {
+    const indexedDB = window.indexedDB;
+
     return new Promise((resolve, reject) => {
       let db: IDBDatabase;
-      const indexedDB = window.indexedDB;
       const request = indexedDB.open(dbName, version);
       request.addEventListener("success", () => {
         db = request.result;
@@ -19,5 +26,9 @@ export default class IndexedDB {
         reject(db);
       });
     });
+  }
+  // database关闭
+  close() {
+    this.db.close();
   }
 }
