@@ -1,9 +1,7 @@
 export default class IndexedDB {
   db!: IDBDatabase;
   constructor(dbName: string, version?: number) {
-    this.init(dbName, version).then((db) => {
-      this.db = db;
-    });
+    this.init(dbName, version);
   }
   // database是否已经存在
   async isExist(dbName: string): Promise<boolean> {
@@ -11,21 +9,18 @@ export default class IndexedDB {
     return dbs.some((db) => db.name === dbName);
   }
   // database创建
-  async init(dbName: string, version?: number): Promise<IDBDatabase> {
-    const indexedDB = window.indexedDB;
-
-    return new Promise((resolve, reject) => {
-      let db: IDBDatabase;
-      const request = indexedDB.open(dbName, version);
-      request.addEventListener("success", () => {
-        db = request.result;
-        resolve(db);
-      });
-      request.addEventListener("error", () => {
-        db = request.result;
-        reject(db);
-      });
+  init(dbName: string, version?: number) {
+    const request = window.indexedDB.open(dbName, version);
+    request.addEventListener("success", () => {
+      console.info("数据库开启");
+      this.db = request.result;
+      return request.result;
     });
+    request.addEventListener("error", () => {
+      console.error("数据库创建失败");
+      return request.result;
+    });
+    return request;
   }
   // database关闭
   close() {

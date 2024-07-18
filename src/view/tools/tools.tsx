@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import CardStyle from "../../assets/card.module.scss";
 import G_Card from "./components/GloabalCard";
-import { cards } from "../../indexedDB/database";
 import { CARD_LI } from "../../type/card";
 import { register } from "./register";
+import $request from "../../api/request";
 function Tools() {
   const [name, setName] = useState("");
   const [curBtnItem, setCurBtnItem] = useState<CARD_LI>({
@@ -18,7 +18,7 @@ function Tools() {
 
   const [list, setList] = useState<CARD_LI[]>([]);
   const fetchList = async () => {
-    const data = await cards;
+    const data = await $request("queryCards");
     // 动态去注册组件
     const completeData: CARD_LI[] = data.map((itemConfig) => {
       return { ...itemConfig, component: register(itemConfig.type) };
