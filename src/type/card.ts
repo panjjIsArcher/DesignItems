@@ -1,5 +1,13 @@
-interface CARD_LI {
-  name: string;
+import { ReactElement } from "react";
+
+interface BASE_CARD {
+  type: string;
+  className: string;
+  text: string;
+  params?: string;
+}
+interface CARD_LI extends BASE_CARD {
+  component: ReactElement;
 }
 
-export type { CARD_LI };
+export type { BASE_CARD, CARD_LI };

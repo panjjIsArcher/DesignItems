@@ -1,19 +1,49 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CardStyle from "../../assets/card.module.scss";
 import G_Card from "./components/GloabalCard";
-import { cards } from "../../mock/database";
 import { CARD_LI } from "../../type/card";
+import { register } from "./register";
+import $request from "../../api/request";
+
 function Tools() {
   const [name, setName] = useState("");
+  const [curBtnItem, setCurBtnItem] = useState<CARD_LI>({
+    type: "",
+    className: "",
+    text: "BUTTON",
+    component: <div></div>,
+  });
   const changeName = useCallback((val: string) => {
     setName(val);
   }, []);
+
   const [list, setList] = useState<CARD_LI[]>([]);
   const fetchList = async () => {
-    const data = await cards;
-    setList(data);
+    const data = await $request("queryCards");
+    // 动态去注册组件
+    const completeData: CARD_LI[] = data.map((itemConfig: { type: string }) => {
+      return { ...itemConfig, component: register(itemConfig.type) };
+    });
+    setList(
+      completeData.filter((card) => {
+        return card.type.indexOf(name) > -1;
+      })
+    );
   };
-  fetchList();
+
+  const changeStyle = (btnItem: CARD_LI) => {
+    setCurBtnItem(btnItem);
+  };
+
+  // mounted阶段
+  useEffect(() => {
+    fetchList();
+  }, []);
+
+  // 监听name的变化
+  useEffect(() => {
+    fetchList();
+  }, [name]);
   return (
     <div className={CardStyle.container}>
       <div className={CardStyle.form}>
@@ -26,11 +56,17 @@ function Tools() {
       <div className={CardStyle.middle}>
         <ul className={CardStyle.list}>
           {list.map((c) => (
-            <li key={c.name}>{c.name}</li>
+            <li
+              key={c.type}
+              className={CardStyle["card-tab"]}
+              onClick={() => changeStyle(c)}
+            >
+              {c.type}
+            </li>
           ))}
         </ul>
         <div className={CardStyle.screen}>
-          <G_Card />
+          <G_Card curBtnItem={curBtnItem} />
         </div>
       </div>
     </div>
