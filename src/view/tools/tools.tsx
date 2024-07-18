@@ -20,7 +20,7 @@ function Tools() {
   const fetchList = async () => {
     const data = await $request("queryCards");
     // 动态去注册组件
-    const completeData: CARD_LI[] = data.map((itemConfig) => {
+    const completeData: CARD_LI[] = data.map((itemConfig: { type: string }) => {
       return { ...itemConfig, component: register(itemConfig.type) };
     });
     setList(
