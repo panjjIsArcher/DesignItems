@@ -1,3 +1,38 @@
+@use "sass:color";
+@import "./vari.scss";
+
+// 亮色主题(默认)
+[data-theme="light"] {
+  --screen_bg_color: #dde0e6;
+}
+// 深色主题
+[data-theme="dark"] {
+  --screen_bg_color: #1b191c;
+}
+
+html[data-theme="light"] {
+  .container {
+    .middle {
+      .list {
+        .card-tab {
+          box-shadow: 0px 4px 20px 0px #dde0e6;
+        }
+      }
+    }
+  }
+}
+
+html[data-theme="dark"] {
+  .container {
+    .middle {
+      .list {
+        .card-tab {
+          box-shadow: 0px 4px 10px 0px rgba(118, 137, 181, 0.3);
+        }
+      }
+    }
+  }
+}
 .container {
   position: relative;
   .form {
@@ -19,6 +54,42 @@
       &:focus-visible {
         width: 30vw;
       }
+    }
+  }
+  .middle {
+    display: flex;
+    .list,
+    .screen {
+      flex: 1;
+      height: calc(100vh - 164px);
+    }
+    .list {
+      display: grid;
+      padding: 1vw;
+      overflow-y: auto;
+      row-gap: 10px;
+      column-gap: 3.3%;
+      grid-template-columns: repeat(auto-fill, 30%);
+      justify-content: space-around;
+      .card-tab {
+        cursor: pointer;
+        padding: 15px 20px;
+        height: 2.5vw;
+        line-height: 2.5vw;
+        border-radius: 8px;
+        width: 10vw;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.25vw;
+        .card {
+          border-radius: 8px;
+        }
+      }
+    }
+    .screen {
+      background-color: var(--screen_bg_color);
+      padding: 2vw 3vw;
     }
   }
 }
