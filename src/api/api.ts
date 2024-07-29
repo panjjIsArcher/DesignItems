@@ -1,11 +1,15 @@
 import { cards } from "../indexedDB/database";
-import init from "../util/init";
+import IndexedDB from "../indexedDB/indexedDB";
 
-// 初始化数据库
-const indexedDB = await init();
-debugger;
 const queryCards = async function () {
-  return await cards;
+  const _DB: IndexedDB = window._DB;
+  if (_DB.isExist("CARDS")) {
+    const res = await _DB.queryByKey("CARDS", 1);
+    console.info(_DB);
+    return res;
+  }
+
+  return [];
 };
 const URLS: { [key: string]: unknown } = {
   queryCards,
