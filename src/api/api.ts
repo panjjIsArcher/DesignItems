@@ -1,4 +1,3 @@
-import { cards } from "../indexedDB/database";
 import IndexedDB from "../indexedDB/indexedDB";
 
 const queryCards = async function () {
