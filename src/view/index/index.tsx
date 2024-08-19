@@ -8,6 +8,7 @@ export default function Index() {
       return;
     }
     const { scene, camera, renderer } = options;
+    console.log({ scene, camera, renderer });
   }, []);
   return <div className={IndexStyle.layout} id="container"></div>;
 }

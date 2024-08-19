@@ -1,9 +1,10 @@
 import * as Three from "three";
 import { cameraConfig } from "./config/3d";
-const { Scene, PerspectiveCamera, WebGLRenderer } = Three;
+const { Scene, PerspectiveCamera, WebGLRenderer, AmbientLight } = Three;
 let _scene = null,
   _camera = null,
-  _renderer = null;
+  _renderer = null,
+  _gl = null;
 
 const init = function (elementId: string) {
   const el = document.querySelector(`#${elementId}`);
@@ -14,14 +15,29 @@ const init = function (elementId: string) {
   const scene = new Scene();
   // 初始化camera
   const camera = initCamera(cameraConfig, el.clientWidth / el.clientHeight);
+  const ambientLight = initAmbientLight();
+
+  scene.add(ambientLight);
   const renderer = new WebGLRenderer();
   renderer.setSize(el.clientWidth, el.clientHeight);
+  renderer.domElement.id = "canvas";
+  const gl = initWebGl(renderer.domElement);
   el.appendChild(renderer.domElement);
   _scene = scene;
   _camera = camera;
   _renderer = renderer;
   animationFrame();
-  return { scene, camera, renderer };
+
+  return { scene, camera, renderer, gl };
+};
+
+const initWebGl = function (canvas: { getContext: (arg0: string) => unknown }) {
+  const gl = canvas.getContext("webgl");
+  if (!gl) {
+    return;
+  }
+  _gl = gl;
+  return gl;
 };
 
 const animationFrame = () => {
@@ -46,4 +62,8 @@ const initCamera = function (
   return camera;
 };
 
+const initAmbientLight = function () {
+  const ambientLight = new AmbientLight();
+  return ambientLight;
+};
 export default init;
