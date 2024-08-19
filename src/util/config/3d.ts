@@ -1,3 +1,5 @@
+import { BoxConfig } from "../../types/type";
+
 const cameraConfig = {
   position: { x: 0, z: 5, y: 0 },
   fov: 75,
@@ -5,4 +7,6 @@ const cameraConfig = {
   far: 1000,
 };
 
-export { cameraConfig };
+const boxGeoConfig: BoxConfig[] = [{ name: "left-top" }];
+
+export { cameraConfig, boxGeoConfig };

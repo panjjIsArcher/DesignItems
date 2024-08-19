@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import MyContext from "../util/provider";
 import { initBoxGeometry } from "../util/geometry/init";
-function Box() {
+import { BoxConfig } from "../types/type";
+function Box(props: { config: BoxConfig }) {
   const context = useContext(MyContext);
   // 初始化长方形
   const getThreeJs = context;
@@ -11,7 +12,7 @@ function Box() {
     scene.add(boxGeometry);
   }
 
-  return <div>测试</div>;
+  return <div>{props.config.name}</div>;
 }
 
 export default Box;

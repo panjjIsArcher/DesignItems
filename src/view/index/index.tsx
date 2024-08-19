@@ -3,6 +3,7 @@ import IndexStyle from "../../assets/css/index.module.scss";
 import init from "../../util/init";
 import MyContext from "../../util/provider";
 import Box from "../../components/box";
+import { boxGeoConfig } from "../../util/config/3d";
 export default function Index() {
   const [gScreen, setGScrren] = useState(null);
   const [gCamera, setGCamera] = useState(null);
@@ -24,7 +25,9 @@ export default function Index() {
           scene: gScreen,
         }}
       >
-        <Box />
+        {boxGeoConfig.map((config) => {
+          return <Box key={config.name} config={config} />;
+        })}
       </MyContext.Provider>
     </div>
   );
