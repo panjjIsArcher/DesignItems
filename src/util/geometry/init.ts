@@ -1,5 +1,5 @@
 import * as Three from "three";
-const { BoxGeometry, MeshBasicMaterial, Mesh } = Three;
+const { BoxGeometry, MeshBasicMaterial, Mesh, BoxHelper } = Three;
 
 const initBoxGeometry = (
   width: number = 1,
@@ -13,4 +13,9 @@ const initBoxGeometry = (
   );
 };
 
-export { initBoxGeometry };
+const initBoxHelper = (object: unknown) => {
+  const box = new BoxHelper(object, 0xffff00);
+  return box;
+};
+
+export { initBoxGeometry, initBoxHelper };
