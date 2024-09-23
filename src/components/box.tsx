@@ -2,7 +2,7 @@ import { useContext } from "react";
 import MyContext from "../util/provider";
 import { initBoxGeometry, initBoxHelper } from "../util/geometry/init";
 import { BoxConfig } from "../types/type";
-import { updatePosition } from "../util/mesh";
+import { updatePosition, updateRotation } from "../util/mesh";
 function Box(props: { config: BoxConfig }) {
   const context = useContext(MyContext);
   // 初始化长方形

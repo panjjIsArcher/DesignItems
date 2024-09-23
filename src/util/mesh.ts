@@ -1,7 +1,5 @@
-import * as Three from "three";
-const { Mesh } = Three;
 const updatePosition = (
-  mesh,
+  mesh: { position: { x: number; y: number; z: number } },
   position: {
     x: number;
     y: number;
@@ -14,7 +12,7 @@ const updatePosition = (
 };
 
 const updateRotation = (
-  mesh,
+  mesh: { rotation: { x: number; y: number; z: number } },
   rotation: {
     x: number;
     y: number;
